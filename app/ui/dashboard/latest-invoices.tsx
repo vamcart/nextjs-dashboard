@@ -5,7 +5,7 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestInvoices } from '@/app/lib/data';
 
 export default async function LatestInvoices() { // Make component async, remove the props
-  const latestInvoices = await fetchLatestInvoices(); // Fetch data inside the component
+const latestInvoices = await fetchLatestInvoices(); // Fetch data inside the component
  
   return (
     <div className="flex w-full flex-col md:col-span-4">
