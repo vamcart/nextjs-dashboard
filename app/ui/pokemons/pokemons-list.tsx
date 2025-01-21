@@ -1,10 +1,8 @@
 import { Pokemon } from '@/app/lib/definitions';
 import { PokemonItem } from '@/app/ui/pokemons/pokemon';
-import { delayRecommendedProducts, withDelay } from '@/app/lib/delay';
 
 export async function PokemonsList() {
-  const pokemons: Pokemon[] = await withDelay(
-    fetch(
+  const pokemons: Pokemon[] = await fetch(
       // We intentionally delay the response to simulate a slow data
       // request that would benefit from streaming
       `https://app-router-api.vercel.app/api/products?filter=1`,
@@ -13,9 +11,7 @@ export async function PokemonsList() {
         // streaming
         cache: 'no-store',
       }
-    ).then((res) => res.json()),
-    delayRecommendedProducts
-  );
+    ).then((res) => res.json());
 
   return (
           <table className="hidden min-w-full text-gray-900 md:table">
