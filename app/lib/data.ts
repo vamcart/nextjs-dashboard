@@ -13,12 +13,13 @@ export async function fetchRevenue() {
   try {
     // We artificially delay a response for demo purposes.
     // Don't do this in production :)
-    //console.log('Fetching revenue data...');
-    //await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log('Artificially delay 3 sec. for revenue query...');
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
  
     const data = await sql<Revenue>`SELECT * FROM revenue`;
  
-    //console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
  
     return data.rows;
   } catch (error) {
@@ -30,15 +31,19 @@ export async function fetchRevenue() {
 export async function fetchLatestInvoices() {
   try {
 
-    //Задержка 2 секунды что б увидеть skeleton анимацию
-    //await new Promise((resolve) => setTimeout(resolve, 2000));
+    //Задержка 4 секунды что б увидеть skeleton анимацию
+    await new Promise((resolve) => setTimeout(resolve, 4000));
 
+    console.log('Artificially delay 4 sec. for latest invoices query...');
+    console.log('Fetching invoice data...');
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       ORDER BY invoices.date DESC
       LIMIT 5`;
+
+    console.log('Data fetch completed after 4 seconds.');
 
     const latestInvoices = data.rows.map((invoice) => ({
       ...invoice,
@@ -54,8 +59,11 @@ export async function fetchLatestInvoices() {
 export async function fetchCardData() {
   try {
 
-    //Задержка 4 секунды что б увидеть skeleton анимацию
-    //await new Promise((resolve) => setTimeout(resolve, 3000));
+    //Задержка 5 секунд что б увидеть skeleton анимацию
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
+    console.log('Artificially delay 5 sec. for total cards query...');
+    console.log('Fetching cards total data...');
 
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -66,6 +74,8 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
+
+    console.log('Data fetch completed after 5 seconds.');
 
     const data = await Promise.all([
       invoiceCountPromise,
