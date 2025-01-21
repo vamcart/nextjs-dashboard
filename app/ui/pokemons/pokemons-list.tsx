@@ -2,9 +2,8 @@ import { Pokemon } from '@/app/lib/definitions';
 import { PokemonItem } from '@/app/ui/pokemons/pokemon';
 
 export async function PokemonsList() {
-  let pokemons: Pokemon[] = await fetch(
-      // We intentionally delay the response to simulate a slow data
-      // request that would benefit from streaming
+  const pokemons: Pokemon[] = await fetch(
+      // API With Data
       `https://app-router-api.vercel.app/api/products?filter=1`,
       {
         // We intentionally disable Next.js Cache to better demo
