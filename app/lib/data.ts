@@ -13,13 +13,13 @@ export async function fetchRevenue() {
   try {
     // We artificially delay a response for demo purposes.
     // Don't do this in production :)
-    console.log('Artificially delay 3 sec. for revenue query...');
-    console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    //console.log('Artificially delay 3 sec. for revenue query...');
+    //console.log('Fetching revenue data...');
+    //await new Promise((resolve) => setTimeout(resolve, 3000));
  
     const data = await sql<Revenue>`SELECT * FROM revenue`;
  
-    console.log('Data fetch completed after 3 seconds.');
+    //console.log('Data fetch completed after 3 seconds.');
  
     return data.rows;
   } catch (error) {
@@ -32,18 +32,18 @@ export async function fetchLatestInvoices() {
   try {
 
     //Задержка 4 секунды что б увидеть skeleton анимацию
-    await new Promise((resolve) => setTimeout(resolve, 4000));
+    //await new Promise((resolve) => setTimeout(resolve, 4000));
 
-    console.log('Artificially delay 4 sec. for latest invoices query...');
-    console.log('Fetching invoice data...');
+    //console.log('Artificially delay 4 sec. for latest invoices query...');
+    //console.log('Fetching invoice data...');
     const data = await sql<LatestInvoiceRaw>`
-      SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
+      SELECT invoices.id, invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
-      ORDER BY invoices.date DESC
+      ORDER BY invoices.id DESC
       LIMIT 5`;
 
-    console.log('Data fetch completed after 4 seconds.');
+    //console.log('Data fetch completed after 4 seconds.');
 
     const latestInvoices = data.rows.map((invoice) => ({
       ...invoice,
@@ -60,10 +60,10 @@ export async function fetchCardData() {
   try {
 
     //Задержка 5 секунд что б увидеть skeleton анимацию
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    //await new Promise((resolve) => setTimeout(resolve, 5000));
 
-    console.log('Artificially delay 5 sec. for total cards query...');
-    console.log('Fetching cards total data...');
+    //console.log('Artificially delay 5 sec. for total cards query...');
+    //console.log('Fetching cards total data...');
 
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
@@ -75,7 +75,7 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
-    console.log('Data fetch completed after 5 seconds.');
+    //console.log('Data fetch completed after 5 seconds.');
 
     const data = await Promise.all([
       invoiceCountPromise,
@@ -100,7 +100,7 @@ export async function fetchCardData() {
   }
 }
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 5;
 export async function fetchFilteredInvoices(
   query: string,
   currentPage: number,
@@ -108,9 +108,6 @@ export async function fetchFilteredInvoices(
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
-
-    //Задержка 1 секунда что б увидеть skeleton анимацию
-    //await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const invoices = await sql<InvoicesTable>`
       SELECT
@@ -129,7 +126,7 @@ export async function fetchFilteredInvoices(
         invoices.amount::text ILIKE ${`%${query}%`} OR
         invoices.date::text ILIKE ${`%${query}%`} OR
         invoices.status ILIKE ${`%${query}%`}
-      ORDER BY invoices.date DESC
+      ORDER BY invoices.id DESC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
 
