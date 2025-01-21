@@ -6,14 +6,13 @@ export const metadata: Metadata = {
   title: 'Login',
 };
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams?: {
+export default async function LoginPage(props: {
+  searchParams?: Promise<{
     callbackUrl?: string;
-  };
+  }>;
 }) {
-  const redirectTo = await searchParams?.callbackUrl || '/dashboard';
+  const searchParams = await props.searchParams;
+  const redirectTo = String(searchParams?.callbackUrl) || '/dashboard';
 
   return (
     <main className="flex items-center justify-center md:h-screen">
