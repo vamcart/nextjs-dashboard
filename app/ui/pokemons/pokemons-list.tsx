@@ -1,9 +1,17 @@
 import { Pokemon } from '@/app/lib/definitions';
 import { PokemonItem } from '@/app/ui/pokemons/pokemon';
-import { fetchPokemons } from '@/app/lib/data';
 
 export async function PokemonsList() {
-  const pokemons: Pokemon[] = await fetchPokemons();
+  const pokemons: Pokemon[] = await fetch(
+      // We intentionally delay the response to simulate a slow data
+      // request that would benefit from streaming
+      `https://app-router-api.vercel.app/api/products?filter=1`,
+      {
+        // We intentionally disable Next.js Cache to better demo
+        // streaming
+        cache: 'no-store',
+      }
+    ).then((res) => res.json());
 
   return (
           <table className="hidden min-w-full text-gray-900 md:table">
