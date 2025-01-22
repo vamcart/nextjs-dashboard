@@ -238,7 +238,7 @@ export async function fetchPokemons() {
     const data = await fetch(
       // We intentionally delay the response to simulate a slow data
       // request that would benefit from streaming
-      `https://app-router-api.vercel.app/api/productss`,
+      `https://app-router-api.vercel.app/api/products`,
       {
         // We intentionally disable Next.js Cache to better demo
         // streaming
