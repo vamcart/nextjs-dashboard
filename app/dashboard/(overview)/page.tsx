@@ -5,7 +5,8 @@ import { Suspense } from 'react';
 import { LatestInvoicesSkeleton, RevenueChartSkeleton, CardsSkeleton } from '@/app/ui/skeletons';
 import CardWrapper from '@/app/ui/dashboard/cards';
 import { Metadata } from 'next';
- 
+import { ErrorBoundary } from 'react-error-boundary';
+
 export const metadata: Metadata = {
   title: 'Home',
 };
@@ -35,9 +36,11 @@ export default async function Page(props: {
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart />
         </Suspense>        
+        <ErrorBoundary fallback={<div>An error happened</div>}>
         <Suspense fallback={<LatestInvoicesSkeleton />}>
           <LatestInvoices />
         </Suspense>        
+        </ErrorBoundary>
       </div>
     </main>
   );

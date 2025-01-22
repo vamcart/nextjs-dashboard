@@ -13,8 +13,6 @@ export default async function LoginPage(props: {
 }) {
   const searchParams = await props.searchParams;
   const redirectTo = String(searchParams?.callbackUrl??'/dashboard');
-  console.log("login redirect");
-  console.log(redirectTo);
 
   return (
     <main className="flex items-center justify-center md:h-screen">
