@@ -1,5 +1,4 @@
 import { Pokemon } from '@/app/lib/definitions';
-import Image from 'next/image';
 
 export const PokemonItem = ({ pokemon }: { pokemon: Pokemon }) => {
 
