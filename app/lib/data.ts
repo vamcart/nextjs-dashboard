@@ -247,7 +247,7 @@ export async function fetchPokemons() {
     );
   
     if (!data.ok) {
-      throw new Error(response.statusText);
+      throw new Error('Failed to fetch pokemons data.');
     }
 
   return data.json()
