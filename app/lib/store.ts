@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/app/features/counter/counter-slice'
-import { setupListeners } from '@reduxjs/toolkit/query'
+//import { setupListeners } from '@reduxjs/toolkit/query'
 import { pokemonApi } from '@/app/services/pokemon'
+
 
 export const makeStore = () => {
   return configureStore({
