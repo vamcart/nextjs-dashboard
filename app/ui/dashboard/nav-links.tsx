@@ -20,6 +20,7 @@ const links = [
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
   { name: 'Pokemons', href: '/dashboard/pokemons', icon: UserGroupIcon },
+  { name: 'Counter', href: '/dashboard/counter', icon: UserGroupIcon },
 ];
  
 export default function NavLinks() {
