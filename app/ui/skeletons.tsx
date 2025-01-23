@@ -103,7 +103,7 @@ export default function DashboardSkeleton() {
 
 export function TableRowSkeleton() {
   return (
-    <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+    <tr className={`${shimmer} w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg`}>
       {/* Customer Name and Image */}
       <td className="relative overflow-hidden whitespace-nowrap py-3 pl-6 pr-3">
         <div className="flex items-center gap-3">
@@ -140,7 +140,7 @@ export function TableRowSkeleton() {
 
 export function InvoicesMobileSkeleton() {
   return (
-    <div className="mb-2 w-full rounded-md bg-white p-4">
+    <div className={`${shimmer} mb-2 w-full rounded-md bg-white p-4`}>
       <div className="flex items-center justify-between border-b border-gray-100 pb-8">
         <div className="flex items-center">
           <div className="mr-2 h-8 w-8 rounded-full bg-gray-100"></div>
