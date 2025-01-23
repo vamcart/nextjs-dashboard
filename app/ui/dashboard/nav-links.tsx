@@ -20,7 +20,8 @@ const links = [
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
   { name: 'Pokemons', href: '/dashboard/pokemons', icon: UserGroupIcon },
-  { name: 'Counter', href: '/dashboard/counter', icon: UserGroupIcon },
+  { name: 'Counter useState', href: '/dashboard/counter', icon: UserGroupIcon },
+  { name: 'Counter Redux Toolkit', href: '/dashboard/counter-redux', icon: UserGroupIcon },
 ];
  
 export default function NavLinks() {
