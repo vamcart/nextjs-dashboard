@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import { useGetPokemonByNameQuery } from '@/app/services/pokemon'
 
 export default function PokemonInfo() {
@@ -17,13 +16,7 @@ export default function PokemonInfo() {
       ) : data ? (
         <>
           <h3>{data.species.name}</h3>
-              <Image
-                src={data.sprites.front_shiny}
-                className="mr-2 rounded-full"
-                width={28}
-                height={28}
-                alt={`${data.species.name}'s profile picture`}
-              />          
+          <img src={data.sprites.front_shiny} alt={data.species.name} />
         </>
       ) : null}
     </div>
