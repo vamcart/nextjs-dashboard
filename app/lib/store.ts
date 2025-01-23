@@ -1,16 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, compose } from '@reduxjs/toolkit'
 import counterReducer from '@/app/features/counter/counter-slice'
 //import { setupListeners } from '@reduxjs/toolkit/query'
 import { pokemonApi } from '@/app/services/pokemon'
-
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 export const makeStore = () => {
   return configureStore({
+  devTools: true,
   reducer: {
     counter: counterReducer,
     // Add the generated reducer as a specific top-level slice
     [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
+  
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pokemonApi.middleware),
