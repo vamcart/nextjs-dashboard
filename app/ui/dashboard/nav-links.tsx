@@ -22,6 +22,7 @@ const links = [
   { name: 'Pokemons', href: '/dashboard/pokemons', icon: UserGroupIcon },
   { name: 'Counter useState', href: '/dashboard/counter', icon: UserGroupIcon },
   { name: 'Counter Redux Toolkit', href: '/dashboard/counter-redux', icon: UserGroupIcon },
+  { name: 'RTK Query API Fetch', href: '/dashboard/rtk-query', icon: UserGroupIcon },
 ];
  
 export default function NavLinks() {
