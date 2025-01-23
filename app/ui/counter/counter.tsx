@@ -12,7 +12,7 @@ export default function Counter() {
   // View: the UI definition
   return (
     <div>
-      Value: {counter} <button onClick={increment}>Increment</button>
+      Value: {counter} <button className="btn btn-soft btn-primary" onClick={increment}>Increment</button>
     </div>
   )
 }

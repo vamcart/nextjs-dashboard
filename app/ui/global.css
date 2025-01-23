@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin 'daisyui';
 
 @theme {
   --grid-template-columns-13: repeat(13, minmax(0, 1fr));
